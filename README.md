@@ -9,6 +9,8 @@
 
     $ cd ~
 
+作業フォルダに移動して
+
     $ git clone https://github.com/msiplab/EicProgLab.git EicProgLab
 
 /home/pi/EicProgLab の下にファイルが展開されます。
