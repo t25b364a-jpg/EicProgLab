@@ -8,6 +8,7 @@
 端末上で以下のコマンドを実行してください。
 
     $ cd ~
+
     $ git clone https://github.com/msiplab/EicProgLab.git EicProgLab
 
 /home/pi/EicProgLab の下にファイルが展開されます。
