@@ -2,69 +2,107 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 
 void setUp(void) {}
 void tearDown(void) {}
 
-// 出力バッファから距離値を抽出
-double extract_distance(const char* buffer) {
-    double d = 0.0;
-    const char* marker = strstr(buffer, "近い方の距離:");
-    if (marker) {
-        sscanf(marker, "近い方の距離: %lf", &d);
-    }
-    return d;
-}
+void test_practice1_2_a1_b0_c_1(void) {
+    const char* input = "1 \n 0 \n -1\n";  // a = 1, b = 0, c = -1
 
-// popenで実行し、標準出力全文を取得
-void run_program_with_input(const char* input, char* output_buf, size_t buf_size) {
+    // 入力ファイルの作成
     FILE* in = fopen("input.txt", "w");
     TEST_ASSERT_NOT_NULL(in);
     fputs(input, in);
     fclose(in);
 
-    FILE* fp = popen("/bin/sh -c \"./bin/practice1_2 < input.txt\"", "r");
+    // プログラム実行
+    FILE* fp = popen("./bin/practice1_2 < input.txt", "r");
     TEST_ASSERT_NOT_NULL(fp);
 
-    char line[256];
-    output_buf[0] = '\0';
-    while (fgets(line, sizeof(line), fp)) {
-        if (strlen(output_buf) + strlen(line) < buf_size - 1) {
-            strcat(output_buf, line);
-        }
-    }
-
+    char buffer[1024] = {0};
+    fread(buffer, 1, sizeof(buffer) - 1, fp);
     pclose(fp);
     remove("input.txt");
+
+    // 結果チェック
+    double expctdX1 = 1;
+    double expctdX2 = -1;
+    double tol = 0.01;  // 許容誤差
+    double actualX1, actualX2;;
+
+    char* eq_pos1 = strstr(buffer, "x1 =");
+
+    sscanf(eq_pos1 + 4, "%lf", &actualX1);  // "x1 =" 以降の実数を任意の行から抽出
+    TEST_ASSERT_DOUBLE_WITHIN(tol, expctdX1, actualX1);
+    
+    char* eq_pos2 = strstr(buffer, "x2 =");
+    sscanf(eq_pos2 + 4, "%lf", &actualX2);  // "x2 =" 以降の実数を任意の行から抽出
+    TEST_ASSERT_DOUBLE_WITHIN(tol, expctdX2, actualX2);
+
 }
 
-void test_practice1_2_origin(void) {
-    char output[4096];
-    run_program_with_input("0.0 0.0\n", output, sizeof(output));
-    double d = extract_distance(output);
-    TEST_ASSERT_DOUBLE_WITHIN(1e-8, 1.41421356, d);
-}
 
-void test_practice1_2_positive_far(void) {
-    char output[4096];
-    run_program_with_input("3.0 3.0\n", output, sizeof(output));
-    double d = extract_distance(output);
-    TEST_ASSERT_DOUBLE_WITHIN(1e-8, 2.82842712, d);
-}
+void test_practice1_2_a1_b2_c1(void) {
+    const char* input = "1 \n 2 \n 1\n";  // a = 1, b = 2, c = 1
 
-void test_practice1_2_negative_far(void) {
-    char output[4096];
-    run_program_with_input("-3.0 -3.0\n", output, sizeof(output));
-    double d = extract_distance(output);
-    TEST_ASSERT_DOUBLE_WITHIN(1e-8, 2.82842712, d);
+    // 入力ファイルの作成
+    FILE* in = fopen("input.txt", "w");
+    TEST_ASSERT_NOT_NULL(in);
+    fputs(input, in);
+    fclose(in);
+
+    // プログラム実行
+    FILE* fp = popen("./bin/practice1_2 < input.txt", "r");
+    TEST_ASSERT_NOT_NULL(fp);
+
+    char buffer[1024] = {0};
+    fread(buffer, 1, sizeof(buffer) - 1, fp);
+    pclose(fp);
+    remove("input.txt");
+
+    // 結果チェック
+    double expctdX = -1;
+    double tol = 0.01;  // 許容誤差
+    double actualX;
+
+    char* eq_pos = strstr(buffer, "x  =");
+
+    sscanf(eq_pos + 4, "%lf", &actualX);  // "x  =" 以降の実数を任意の行から抽出
+    TEST_ASSERT_DOUBLE_WITHIN(tol, expctdX, actualX);
+    
+}   
+
+void test_practice1_2_a1_b0_c1(void) {
+    const char* input = "1 \n 0 \n 1\n";  // a = 1, b = 0, c = 1
+
+    // 入力ファイルの作成
+    FILE* in = fopen("input.txt", "w");
+    TEST_ASSERT_NOT_NULL(in);
+    fputs(input, in);
+    fclose(in);
+
+    // プログラム実行
+    FILE* fp = popen("./bin/practice1_2 < input.txt", "r");
+    TEST_ASSERT_NOT_NULL(fp);
+
+    char buffer[1024] = {0};
+    fread(buffer, 1, sizeof(buffer) - 1, fp);
+    pclose(fp);
+    remove("input.txt");
+
+    // 結果チェック
+    char* eq_pos1 = strstr(buffer, "x1 ="); 
+    TEST_ASSERT_NOT_NULL(strchr(eq_pos1, 'i'));  // "x1 =" 以降に 'i' が含まれるか確認
+    
+    char* eq_pos2 = strstr(buffer, "x2 =");
+    TEST_ASSERT_NOT_NULL(strchr(eq_pos2, 'i'));  // "x2 =" 以降に 'i' が含まれるか確認
+
 }
 
 int main(void) {
     UNITY_BEGIN();
-    RUN_TEST(test_practice1_2_origin);
-    RUN_TEST(test_practice1_2_positive_far);
-    RUN_TEST(test_practice1_2_negative_far);
+    RUN_TEST(test_practice1_2_a1_b0_c_1);
+    RUN_TEST(test_practice1_2_a1_b2_c1);
+    RUN_TEST(test_practice1_2_a1_b0_c1);        
     return UNITY_END();
 }
-
