@@ -92,10 +92,10 @@ void test_practice1_2_a1_b0_c1(void) {
 
     // 結果チェック
     char* eq_pos1 = strstr(buffer, "x1 ="); 
-    TEST_ASSERT_NOT_NULL(strchr(eq_pos1, 'i'));  // "x1 =" 以降に 'i' が含まれるか確認
+    TEST_ASSERT_NOT_NULL(strchr(eq_pos1, 'j'));  // "x1 =" 以降に 'j' が含まれるか確認
     
     char* eq_pos2 = strstr(buffer, "x2 =");
-    TEST_ASSERT_NOT_NULL(strchr(eq_pos2, 'i'));  // "x2 =" 以降に 'i' が含まれるか確認
+    TEST_ASSERT_NOT_NULL(strchr(eq_pos2, 'j'));  // "x2 =" 以降に 'j' が含まれるか確認
 
 }
 
