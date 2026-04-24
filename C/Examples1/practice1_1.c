@@ -1,7 +1,7 @@
 ﻿/*
- * example1_1.c
+ * example1_1 copy.c
  *
- * プログラミングBI 演習例題1-1
+ * プログラミングBI 演習課題1-1
  *
  * Copyright (C) 2007-2026, S. Muramatsu
  *
