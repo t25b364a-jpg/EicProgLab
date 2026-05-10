@@ -1,7 +1,7 @@
 ﻿/*
- * practice1_2.c
+ * practice1_3.c
  *
- * プログラミングBI 演習課題1-2
+ * プログラミングBI 演習課題1-3
  *
  * Copyright (C) 2010-2026, S. Muramatsu
  *

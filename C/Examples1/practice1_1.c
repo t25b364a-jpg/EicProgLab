@@ -1,5 +1,5 @@
 ﻿/*
- * practice1_1 .c
+ * practice1_1.c
  *
  * プログラミングBI 演習課題1-1
  *
