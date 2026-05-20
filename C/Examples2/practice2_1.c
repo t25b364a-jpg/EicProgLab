@@ -1,7 +1,7 @@
 /*
- * example2_1.c
+ * practice2_1.c
  *
- * プログラミングBI 演習例題2-1
+ * プログラミングBI 演習課題2-1
  *
  * Copyright (C) 2010-2026, S. Muramatsu
  *
@@ -11,8 +11,10 @@
 #include <math.h>
 
 /* 関数プロトタイプ */
-void inputVec(double* pVec, int nDims); 
-double getNorm(double* pVector, int nDims); 
+void inputVec(double* pVec, int nDims);
+double getMtxVecProd2(); 
+double getVecDiff2();
+double getNorm2(double* pVector, int nDims); 
 
 int main()
 {
