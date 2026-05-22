@@ -11,34 +11,41 @@
 #include <math.h>
 
 /* 関数プロトタイプ */
-void inputVec(double* pVec, int nDims);
-double getMtxVecProd2(); 
-double getVecDiff2();
-double getNorm2(double* pVector, int nDims); 
+void inputVec(double* pVector);
+void getMtxVecProd2(double*pVectorOut,double pMatrix[][2],double*pVectorIn); 
+void getVecDiff2(double*pVectorOut,double*pVectorIn1,double*pVectorIn2);
+double getNorm2(double*pVector);
 
 int main()
 {
   /* 変数宣言 */
-  int nDims; /* ベクトルの次元 */
+  int i,j; /* ループ変数 */ 
+  int k; /* 繰り返し回数 */
   double *pVector; /* ベクトルのポインタ */
   char mode;
 
-  /* ベクトルの次元の読み込み */
-  do {
-    printf("ベクトルの次元を入力して下さい．(>0): ");
-    scanf("%d", &nDims);
-  } while( nDims < 1 );
-
   /* ベクトルのための動的領域確保 */
-  pVector = (double*)malloc(sizeof(double)*nDims);
+  pVector = (double*)malloc(sizeof(double)*2);
+
 
   do {
-    /* ベクトルxの要素の読み込み */
-    printf("ベクトルx の要素の読み込み\n");
-    inputVec(pVector, nDims);
+    /* ベクトルbの要素の読み込み */
+    printf("ベクトルb の要素の読み込み\n");
+    inputVec(pVector);
 
+    /* 繰り返し回数 */
+    printf("繰り返し回数を入力してください. (>0): ");
+    scanf("%d", &k);
+    
     /* ベクトルの長さ（ノルム）の計算と表示 */
-    printf("ベクトルxの長さ（ノルム）: %f\n\n", getNorm(pVector,nDims));
+    for (i = 0; i < k; i++) {
+      printf("繰り返し回数: %d\n", i + 1);
+      printf("ベクトルx:");
+      for (j = 0; j < 2; j++) {
+        printf("%d番目の要素: %f\n", j + 1, pVector[j]);
+      }
+      printf("距離: %f\n\n", getNorm2(pVector));
+    }
 
     /* 継続の確認 */
     printf("継続しますか？['y'で継続]: ");
@@ -53,10 +60,10 @@ int main()
 }
 
 /* ベクトルの要素を問い合わせる関数 */
-void inputVec(double* pVector, int nDims)
+void inputVec(double* pVector)
 {
     int iDim;
-    for(iDim=0; iDim<nDims; iDim++) {
+    for(iDim=0; iDim<2; iDim++) {
       printf("%d番目の要素を入力して下さい: ", iDim+1);
       scanf("%lf", &pVector[iDim] );
     }
@@ -64,20 +71,20 @@ void inputVec(double* pVector, int nDims)
 }
 
 /* ベクトルの長さ（ノルム）を計算する関数 */
-double getNorm(double* pVector, int nDims)
+double getNorm2(double*pVector)
 {
 
   static int nCalls = 0; /* 呼び出された回数（静的変数）*/
-  int iDim;
+  int iDim,k;
   double sqrdSum;
 
-  /* 呼出し回数の更新と表示 */
+  /* 繰り返し回数の更新と表示 */
   nCalls++;
-  printf("関数 getNorm の呼出し回数: %d\n", nCalls);
+  printf("繰り返し回数: %d\n", nCalls);
 
   /* ベクトルの内積の計算 */
   sqrdSum=0.0;
-  for(iDim=0; iDim<nDims; iDim++)
+  for(iDim=0; iDim<2; iDim++)
     sqrdSum += pVector[iDim] * pVector[iDim];
 
   return sqrt(sqrdSum);
