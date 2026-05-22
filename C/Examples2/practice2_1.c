@@ -44,8 +44,8 @@ int main()
     
    /* ベクトルxの表示 */
     for (i = 0; i < k; i++) {
-      printf("繰り返し回数: %d\n", i + 1);
-      printf("ベクトルx:");
+      printf("繰り返し回数: %d\n", i);
+      printf("ベクトルx:\n");
       for (j = 0; j < 2; j++) {
         printf("%d番目の要素: %f\n", j + 1, pVector_x[j]);
       }

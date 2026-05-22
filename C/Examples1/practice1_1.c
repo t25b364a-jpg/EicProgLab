@@ -4,7 +4,6 @@
  * プログラミングBI 演習課題1-1
  *
  * Copyright (C) 2007-2026, S. Muramatsu
- *
  */
 #include <stdio.h>
 
