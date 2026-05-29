@@ -80,8 +80,8 @@ int main()
 		d = -d;
 		x = mysqrt(d);
 		q = x / (2 * a);
-		printf("x1 = %21.16g+%21.26gj \n", p,q);
-		printf("x2 = %21.16g-%21.26gj \n", p,q);
+		printf("x1 = %21.16g+%21.16gj \n", p,q);
+		printf("x2 = %21.16g-%21.16gj \n", p,q);
 	}
 	
 	return 0;
