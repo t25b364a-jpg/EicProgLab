@@ -70,14 +70,14 @@ Node* insertSorted(Node* head, int value)
     }
 
     /* 挿入位置を探す */
-    Node* current = head;
-    while (current->next != NULL && current->next->value < value) {
-        current = current->next;
+    Node* element = head;
+    while (element->next != NULL && element->next->value < value) {
+        element = element->next;
     }
 
     /* 挿入 */
-    newNode->next = current->next;
-    current->next = newNode;
+    newNode->next = element->next;
+    element->next = newNode;
 
     return head;
 }
@@ -89,20 +89,20 @@ Node* deleteValue(Node* head, int value)
 
     /* 先頭が削除対象 */
     if (head->value == value) {
-        Node* temp = head->next;
+        Node* Element = head->next;
         free(head);
-        return temp;
+        return Element;
     }
 
-    Node* current = head;
-    while (current->next != NULL && current->next->value != value) {
-        current = current->next;
+    Node* element = head;
+    while (element->next != NULL && element->next->value != value) {
+        element = element->next;
     }
 
-    if (current->next != NULL) {
-        Node* temp = current->next;
-        current->next = temp->next;
-        free(temp);
+    if (element->next != NULL) {
+        Node* Element = element->next;
+        element->next = Element->next;
+        free(Element);
     }
 
     return head;
@@ -112,10 +112,10 @@ Node* deleteValue(Node* head, int value)
 void printList(Node* head)
 {
     printf("リスト: ");
-    Node* current = head;
-    while (current != NULL) {
-        printf("%d ", current->value);
-        current = current->next;
+    Node* element = head;
+    while (element != NULL) {
+        printf("%d ", element->value);
+        element = element->next;
     }
     printf("\n");
 }
@@ -123,10 +123,10 @@ void printList(Node* head)
 /* 全ノード解放 */
 void freeList(Node* head)
 {
-    Node* current = head;
-    while (current != NULL) {
-        Node* next = current->next;
-        free(current);
-        current = next;
+    Node* element = head;
+    while (element != NULL) {
+        Node* next = element->next;
+        free(element);
+        element = next;
     }
 }
