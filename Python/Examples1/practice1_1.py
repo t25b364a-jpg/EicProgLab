@@ -3,6 +3,7 @@ practice1_1.py
 (c) Copyright 2022-2025, Shogo MURAMATSU, All rights reserved
 """
 import sys
+import math
 
 # 電源電圧値
 SRC_VOLTAGE = 5.0
