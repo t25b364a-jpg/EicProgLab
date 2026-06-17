@@ -20,14 +20,17 @@ def main(args):
         elements[idx] = float(args[idx+1])
         
     # 抵抗Rに流れる電流の大きさ|I|の計算
-    |E| = SRC_VOLTAGE
+    E = SRC_VOLTAGE
     R, L, C, ω = elements[0], elements[1], elements[2], elements[3]
-    |I| = |E| / math.(R**2 + (ω * L - 1 / (ω * C))**2)
+    I = E / math.sqrt(R**2 + (ω * L - 1 / (ω * C))**2)
 
     # 入力した値と電流の大きさ|I|の表示
-    print('電源電圧 E = ' + str(SRC_VOLTAGE) + ' V')
+    print('電源電圧 |E| = ' + str(SRC_VOLTAGE) + ' V')
     print('抵抗 R = ' + str(R) + ' Ω')
-    print('電流の大きさ|I| = ' + str(|I|) + ' A')
+    print('インダクタ L = ' + str(L) + ' H')
+    print('コンデンサ C = ' + str(C) + ' F')
+    print('角周波数 ω = ' + str(ω) + ' rad/s')
+    print('Rに流れる電流 |I| = ' + str(I) + ' A')
 
 if __name__ == '__main__':
     main(sys.argv)
