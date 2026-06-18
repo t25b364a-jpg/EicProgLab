@@ -11,6 +11,16 @@ class MyComplex:
         self.__real = real
         self.__imag = imag
     
+     #ゲッターメソッドで実部の値を取得
+    @property
+    def real(self):
+        return self.__real
+
+    #ゲッターメソッドで虚部の値を取得
+    @property
+    def imag(self):
+        return self.__imag
+    
     def __str__(self):
         """ 複素数の文字列化 """
         sgn = ' - j' if self.__imag < 0 else ' + j'
