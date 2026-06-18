@@ -21,18 +21,17 @@ def main(args):
     L = MyComplex(float(args[2]), 0)
     C = MyComplex(float(args[3]), 0)
     ω = MyComplex(float(args[4]), 0)
-    
+
     # 各複素数の内容を表示して確認
     print('電源電圧 |E| \t= ' + str(SRC_VOLTAGE) +' V')
-    print('抵抗 R \t= ' + str(R) + ' Ω')
-    print('インダクタ L \t= ' + str(L) + ' H')
-    print('コンデンサ C \t= ' + str(C) + ' F')
-    print('角周波数 ω \t= ' + str(ω) + ' rad/s')
+    print('抵抗 R \t= ' + str(R.real) + ' Ω')
+    print('インダクタ L \t= ' + str(L.real) + ' H')
+    print('コンデンサ C \t= ' + str(C.real) + ' F')
+     print('角周波数 ω \t= ' + str(ω.real) + ' rad/s')
 
     # 抵抗にかかる電圧の複素数を求める
-    X = (ω * L) - (1 / (ω * C))
-    Y = MyComplex(X)
-    V = (R * SRC_VOLTAGE) / (R + MyComplex(0, Y.real))
+    X = (ω * L) - (MyComplex(1.0, 0.0) / (ω * C))
+    V = (R * SRC_VOLTAGE) / (R + MyComplex(0, X.real))
     print('R にかかる電圧 V \t= ' + str(V) + ' V')
 
     #電圧の大きさ[V]を求める
