@@ -1,5 +1,5 @@
 """
-my_complex.py
+my_complex_copy.py
 Copyright (c) 2018-2025, Shogo MURAMATSU, All rights reserved
 """
 import math
@@ -10,6 +10,16 @@ class MyComplex:
         """ コンストラクタ """
         self.__real = real
         self.__imag = imag
+    
+     #ゲッターメソッドで実部の値を取得
+    @property
+    def real(self):
+        return self.__real
+
+    #ゲッターメソッドで虚部の値を取得
+    @property
+    def imag(self):
+        return self.__imag
     
     def __str__(self):
         """ 複素数の文字列化 """
@@ -43,6 +53,19 @@ class MyComplex:
         resimag = self.__real*another.__imag \
                    + self.__imag*another.__real
         return MyComplex(resreal, resimag)
+    
+    def __truediv__(self, another):
+        """ 複素数の除算 """
+        sumsquared = another.__real**2 + another.__imag**2
+        resreal = (self.__real*another.__real   
+                   + self.__imag*another.__imag) / sumsquared
+        resimag = (self.__imag*another.__real
+                   - self.__real*another.__imag) / sumsquared
+        return MyComplex(resreal, resimag)
+
+    def ang(self):
+        """ 複素数の偏角 """
+        return math.atan2(self.__imag, self.__real)
 
 if __name__ == '__main__':
     z1 = MyComplex(1,2)
@@ -56,6 +79,7 @@ if __name__ == '__main__':
     print(z1.__add__(z2))
     print(z1.__sub__(z2))
     print(z1.__mul__(z2))
+    print(z1.__truediv__(z2))
 
     # 上記メソッドは演算子をオーバライドしているため
     print("\n演算子として呼び出し")    
@@ -64,5 +88,4 @@ if __name__ == '__main__':
     print(z1 + z2)
     print(z1 - z2)
     print(z1 * z2)
-
-    
+    print(z1 / z2)
