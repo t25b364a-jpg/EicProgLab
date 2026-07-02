@@ -19,7 +19,7 @@ def main(args):
     elements = [ 0.0 for idx in range(NUM_ELEMENTS) ]
     for idx in range(NUM_ELEMENTS):
         elements[idx] = float(args[idx+1])
-        
+
     # 抵抗Rに流れる電流の大きさ|I|の計算
     E = SRC_VOLTAGE
     R, L, C, ω = elements[0], elements[1], elements[2], elements[3]
