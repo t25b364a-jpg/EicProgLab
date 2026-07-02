@@ -2,7 +2,7 @@
 practice1_2.py
 Copyright (c) 2018-2025, Shogo MURAMATSU, All rights reserved
 """
-from my_complex_copy import MyComplex
+from my_complex import MyComplex
 import sys
 import math
 
