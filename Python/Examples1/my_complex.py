@@ -1,5 +1,5 @@
 """
-my_complex_copy.py
+my_complex.py
 Copyright (c) 2018-2025, Shogo MURAMATSU, All rights reserved
 """
 import math
