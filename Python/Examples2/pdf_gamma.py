@@ -6,10 +6,10 @@ class Gamma(IProbabilityDensityFunction):
     def parameter_inquiry(self):
         print('ガンマ分布のパラメータ(k, θ)を入力してください')
         self.k = float(input('k: '))
-        self.sita = float(input('θ: '))
+        self.theta = float(input('θ: '))
 
     def draw_sample(self):
-        return random.gammavariate(self.k, self.sita)
+        return random.gammavariate(self.k, self.theta  )
 
     @property
     def name(self):
@@ -17,5 +17,5 @@ class Gamma(IProbabilityDensityFunction):
 
     @property
     def analytical_expectation(self):
-        return self.k * self.sita
+        return self.k * self.theta
 

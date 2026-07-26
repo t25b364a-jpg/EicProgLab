@@ -7,6 +7,8 @@ class ProbabilityDensityFunctionFactory:
     obj_list = [ 
                 Uniform(), 
                 Beta()
+                Norm()
+                Gamma()
                 ]
             
     @classmethod
@@ -22,6 +24,10 @@ class ProbabilityDensityFunctionFactory:
             return Uniform()
         elif name == '2' or name == Beta().name:
             return Beta()
+        elif name == '3' or name == Norm().name:
+            return Norm()
+        elif name == '4' or name == Gamma().name:
+            return Gamma()
         else:
             raise ExpectationEstimatorException(name  + ' は無効です．')
         
