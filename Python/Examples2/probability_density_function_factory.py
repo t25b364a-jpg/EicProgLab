@@ -1,6 +1,8 @@
 from expectation_estimator_exception import ExpectationEstimatorException
 from pdf_uniform import Uniform
 from pdf_beta import Beta
+from pdf_norm import Norm
+from pdf_gamma import Gamma
 
 class ProbabilityDensityFunctionFactory:
 
