@@ -6,8 +6,8 @@ class ProbabilityDensityFunctionFactory:
 
     obj_list = [ 
                 Uniform(), 
-                Beta()
-                Norm()
+                Beta(),
+                Norm(),
                 Gamma()
                 ]
             
